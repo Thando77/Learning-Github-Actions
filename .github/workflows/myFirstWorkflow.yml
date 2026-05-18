@@ -27,12 +27,12 @@ jobs:
            sleep 20
   job3:
     name: JOB3
-    needs: job2
+    needs: job1
     runs-on: windows-latest
     steps:
       - name: Run with single dependency
-        run: sleep 20
-      - name: Checking computer info
+        run: sleep 10
+      - name: Checking Runner Info
         shell: pswh
         run: get-computerinfo
   job4:
