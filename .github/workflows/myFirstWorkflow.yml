@@ -33,7 +33,7 @@ jobs:
       - name: Run with single dependency
         run: sleep 10
       - name: Checking Runner Info
-        shell: pswh
+        shell: pwsh
         run: get-computerinfo
   job4:
     name: JOB4
