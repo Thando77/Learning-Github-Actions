@@ -1,9 +1,6 @@
 name: my-first-workflow
 #To have a trigger on every push on this repo on any branch
-on: 
-  schedule:
-    - cron: "5 * * * *"  
-  workflow_dispatch:
+on:
   push:
 
 
@@ -12,42 +9,15 @@ jobs:
     name: JOB1
     runs-on: ubuntu-latest
     steps:
-      - name: Running Single Command in Job1
-        run: echo "Hi I am thandolwethu Mdishwa and this is my first github workflow"
-      - name: Checking OS Release for Github Hosted Runner
-        run: cat /etc/os-release
-      - name: calling sleep
-        run: sleep 20
-  job2:
-     name: JOB2
-     runs-on: ubuntu-latest
-     steps:
-       - name: Checking the hostname for runner
-         run: hostname
-       - name: Running multiple commands
-         run:
-           echo "Hi I am Thandolwethu Mdishwa"
-           echo "current time `date`"
-           sleep 20
-  job3:
-    name: JOB3
-    needs: job1
-    runs-on: windows-latest
-    steps:
-      - name: Run with single dependency
-        run: sleep 10
-      - name: Checking Runner Info
-        shell: pwsh
-        run: get-computerinfo
-  job4:
-    name: JOB4
-    needs:
-      - job1
-      - job2
-      - job3
-    runs-on: macos-latest
-    steps:
-      - name: Run with multiple dependencies
-        run: sleep 10
-      - name: Checking Runner Info
-        run: sw_vers
+      - name: Step 1
+        run: |
+          pwd
+          ls -ltr
+          hostname
+      - name: Step 2 - Checkout
+        uses: actions/checkout@v6.0.2
+      - name: Step - 3 
+        run: |
+          pwd
+          ls -ltr
+          hostname
