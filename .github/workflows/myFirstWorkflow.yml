@@ -22,17 +22,17 @@ jobs:
           mkdir artifacts
           echo `ls -ltr` >> artifacts/list.txt
           echo `hostname` >> artifacts/hostname.txt
-      - name: Upload Artifact
+      - name: Upload Single File Artifact
         uses: actions/upload-artifact@v7
         with:
           name: single_file
           path: ./myartifact.txt
-      - name: Upload Artifact
+      - name: Upload Directory Artifact
         uses: actions/upload-artifact@v7
         with:
           name: directory_artifacts
           path: artifacts/
-      - name:  upload multiple artifacts individually
+      - name:  Upload Multiple Artifacts
         uses: actions/upload-artifact@v7
         with:
           name: upload_multiple_artifacts_individually 
