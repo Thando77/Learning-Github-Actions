@@ -15,7 +15,7 @@ jobs:
           ls -ltr
           hostname
       - name: Step 2 - Checkout
-        uses: actions/checkout@latest
+        uses: actions/checkout@v6.0.2
       - name: Step - 3 
         run: |
           echo `pwd` >> myartifact.txt
