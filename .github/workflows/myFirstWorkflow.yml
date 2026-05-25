@@ -38,7 +38,7 @@ jobs:
           name: all_files_as_artifacts
           path: |
             artifacts/ 
-            ./myartifacts.txt
+            ./myartifact.txt
       - name:  Upload Multiple Artifacts with exclusions
         uses: actions/upload-artifact@v7
         with:
