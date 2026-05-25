@@ -33,7 +33,7 @@ jobs:
           name: directory_artifacts
           path: artifacts/
       - name:  upload multiple artifacts individually
-        uses: actions/upload-articact@v7
+        uses: actions/upload-artifact@v7
         with:
           name: upload_multiple_artifacts_individually 
           path: |
