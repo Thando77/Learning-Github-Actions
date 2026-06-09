@@ -90,33 +90,4 @@ jobs:
       - name: Checking current directory post download
         run: |
           pwd
-          ls -ltr  
-
-  job4:
-    name: JOB4
-    needs: job1
-    runs-on: ubuntu-latest
-    steps:
-      - name: Creating directories
-        run: | 
-          mkdir -p single_file_directory
-          mkdir - download_directory
-        
-      - name: Checking current directory
-        run: |
-          pwd
-          ls -ltr
-      - name: Download artifacts
-        uses: actions/download-artifact@v8.0.1
-        with:
-          name: directory_artifacts
-          path: download_directory
-      - name: Download artifact
-        uses: actions/download-artifact@v8.0.1
-        with:
-          name: single_file
-          path: single_file_directory   
-      - name: Checking current directory post download
-        run: |
-          pwd
           ls -ltr           
