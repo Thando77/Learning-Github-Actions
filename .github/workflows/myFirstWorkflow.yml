@@ -6,6 +6,9 @@ on:
       - dev
       - main
       - 'feature-*'
+  pull_request:
+    branches: 
+      - dev
 
 
 jobs:
