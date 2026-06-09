@@ -7,10 +7,6 @@ on:
       - main
       - 'feature-*'
 
-  pull_request:
-    branches:
-      - main
-
 jobs:
   job1:
     name: JOB1
