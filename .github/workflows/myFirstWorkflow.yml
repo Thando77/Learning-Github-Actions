@@ -11,6 +11,10 @@ on:
     branches:
       - main
 
+env:
+  ENV_TYPE: DEV
+  APP_USER: Thando
+  APP_PORT: 80
 
 jobs:
   job1:
@@ -90,4 +94,9 @@ jobs:
       - name: Checking current directory post download
         run: |
           pwd
-          ls -ltr           
+          ls -ltr
+      - name: Referring Environment Variables
+        run: | 
+          echo "[INFO] Running deployment for $ENV_TYPE with user $APP_USER"
+          echo "[INFO] Once deployed, the application will be available on $APP_PORT"
+        
