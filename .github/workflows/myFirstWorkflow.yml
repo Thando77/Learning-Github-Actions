@@ -85,4 +85,16 @@ jobs:
       - name: Checking current directory post download
         run: |
           pwd
-          ls -ltr           
+          ls -ltr 
+  job4:
+   name: JOB4
+   runs-on: ubuntu-latest
+   steps:
+     - name: Referring context or in-built variables
+       run: | 
+         echo "[INFO] Triggered by ${{ github.event_name }}"
+         echo "[INFO] New changes are added by ${{ github.actor }} in ${{ github.ref_name }} branch" 
+         echo "[INFO] This current step is running on ${{ runner.os }}"
+         echo "The current job id is ${{ job.check_run_id }}"
+         echo "The current environment is ${{ env }}"
+         echo "The current saved secret is ${{ secrets.APP_PASSWORD }}"
