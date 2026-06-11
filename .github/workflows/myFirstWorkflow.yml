@@ -109,7 +109,7 @@ jobs:
          run: echo "[INFO] Password for ${{ vars.HOST }} is ${{ vars.PASSWORD }}"
      environment:
        name: Integration
-     if: github.ref == 'refs/heads/dev'  
+     if: github.ref_name == 'dev'  
 
   production:
     name: PROD DEPLOYMENT
