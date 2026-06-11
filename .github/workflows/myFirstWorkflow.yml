@@ -7,6 +7,15 @@ on:
       - main
       - 'feature-*'
 
+  pull_request:
+    branches:
+      - main
+
+env:
+  ENV_TYPE: DEV
+  APP_USER: Thando
+  APP_PORT: 80
+
 jobs:
   job1:
     name: JOB1
@@ -85,19 +94,13 @@ jobs:
       - name: Checking current directory post download
         run: |
           pwd
-          ls -ltr 
-  job4:
-   name: JOB4
-   runs-on: ubuntu-latest
-   steps:
-     - name: Referring context or in-built variables
-       run: | 
-         echo "[INFO] Triggered by ${{ github.event_name }}"
-         echo "[INFO] New changes are added by ${{ github.actor }} in ${{ github.ref_name }} branch" 
-         echo "[INFO] This current step is running on ${{ runner.os }}"
-         echo "The current job id is ${{ job.check_run_id }}"
-         echo "The current environment is ${{ env }}"
-         echo "The current saved secret is ${{ secrets.APP_PASSWORD }}"
+          ls -ltr
+      - name: Referring Environment Variables
+        run: | 
+          echo "[INFO] Running deployment for $ENV_TYPE with user $APP_USER"
+          echo "[INFO] Once deployed, the application will be available on $APP_PORT"
+      - name: Referring Repo Secrets
+        run: echo "[INFO] Checking the repo secrets ${{ secrets.APP_PASSWORD }}"
 
   integration:
      name: STAGE DEPLOYMENT
@@ -109,18 +112,17 @@ jobs:
          run: echo "[INFO] Password for ${{ vars.HOST }} is ${{ vars.PASSWORD }}"
      environment:
        name: Integration
-     if: github.ref_name == 'dev'  
+     if: github.ref == 'refs/heads/dev'  
 
   production:
     name: PROD DEPLOYMENT
     runs-on: ubuntu-latest
     steps:
-      - name: Referring Environment Variables check
+      - name: Referring Environment Variables
         run: echo "[INFO] Running Deployment on ${{ vars.HOST }} by ${{ vars.USER }}"
       - name: Referring Environment Secrets
         run: echo "[INFO] Password for ${{ vars.HOST }} is ${{ vars.PASSWORD }}"
     environment:
       name: Master
-    if: github.ref_name == 'main'  
-    
-    
+    if: github.ref == 'refs/heads/main'         
+        
