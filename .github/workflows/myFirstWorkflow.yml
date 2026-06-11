@@ -115,7 +115,7 @@ jobs:
     name: PROD DEPLOYMENT
     runs-on: ubuntu-latest
     steps:
-      - name: Referring Environment Variables
+      - name: Referring Environment Variables check
         run: echo "[INFO] Running Deployment on ${{ vars.HOST }} by ${{ vars.USER }}"
       - name: Referring Environment Secrets
         run: echo "[INFO] Password for ${{ vars.HOST }} is ${{ vars.PASSWORD }}"
