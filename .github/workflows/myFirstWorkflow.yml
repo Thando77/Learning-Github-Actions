@@ -101,4 +101,28 @@ jobs:
           echo "[INFO] Once deployed, the application will be available on $APP_PORT"
       - name: Referring Repo Secrets
         run: echo "[INFO] Checking the repo secrets ${{ secrets.APP_PASSWORD }}"
+
+  integration:
+     name: STAGE DEPLOYMENT
+     runs-on: ubuntu-latest
+     steps:
+       - name: Referring Environment Variables
+         run: echo "[INFO] Running Deployment on ${{ vars.HOST }} by ${{ vars.USER }}"
+       - name: Referring Environment Secrets
+         run: echo "[INFO] Password for ${{ vars.HOST }} is ${{ vars.PASSWORD }}"
+     environment:
+       name: Integration
+     if: github.ref == 'refs/heads/dev'  
+
+  production:
+    name: PROD DEPLOYMENT
+    runs-on: ubuntu-latest
+    steps:
+      - name: Referring Environment Variables
+        run: echo "[INFO] Running Deployment on ${{ vars.HOST }} by ${{ vars.USER }}"
+      - name: Referring Environment Secrets
+        run: echo "[INFO] Password for ${{ vars.HOST }} is ${{ vars.PASSWORD }}"
+    environment:
+      name: Master
+    if: github.ref == 'refs/heads/main'         
         
