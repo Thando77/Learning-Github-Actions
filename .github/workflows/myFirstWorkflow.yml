@@ -98,3 +98,27 @@ jobs:
          echo "The current job id is ${{ job.check_run_id }}"
          echo "The current environment is ${{ env }}"
          echo "The current saved secret is ${{ secrets.APP_PASSWORD }}"
+
+ integration:
+   name: STAGE DEPLOYMENT
+   runs-on: ubuntu-latest
+   steps:
+     - name: Referring Environment Variables
+       run: echo "[INFO] Running Deployment on ${{ vars.HOST }} by ${{ vars.USER }}"
+     - name: Referring Environment Secrets
+       run: echo "[INFO] Password for ${{ vars.HOST }} is ${{ vars.PASSWORD }}"
+   environment:
+     name: Integration
+
+ production:
+   name: PROD DEPLOYMENT
+   runs-on: ubuntu-latest
+   steps:
+     - name: Referring Environment Variables
+       run: echo "[INFO] Running Deployment on ${{ vars.HOST }} by ${{ vars.USER }}"
+     - name: Referring Environment Secrets
+       run: echo "[INFO] Password for ${{ vars.HOST }} is ${{ vars.PASSWORD }}"
+   environment:
+     name: Master    
+    
+    
