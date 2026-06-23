@@ -27,5 +27,22 @@ jobs:
           java-version: '21'
           cache: maven
 
-      - name: Run Tests
-        run: mvn clean test
+      # Run tests + generate coverage report
+      - name: Run Tests + Coverage
+        run: mvn clean test jacoco:report
+
+      # Create a directory for exported reports
+      - name: Create coverage output directory
+        run: mkdir -p coverage-report
+
+      # Copy JaCoCo report into that directory
+      - name: Copy coverage report
+        run: |
+          cp -r target/site/jacoco/* coverage-report/
+
+      # Upload coverage report as artifact (IMPORTANT in CI)
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco-coverage-report
+          path: coverage-report
