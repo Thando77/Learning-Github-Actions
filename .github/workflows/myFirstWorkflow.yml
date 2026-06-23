@@ -51,6 +51,7 @@ jobs:
   download-coverage-report:
     name: Download Coverage Report
     runs-on: ubuntu-latest
+    needs: unit-tests
 
     steps:
       #Download the coverage report artifact in another job (if needed)
