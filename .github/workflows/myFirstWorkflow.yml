@@ -42,7 +42,7 @@ jobs:
 
       # Copy JaCoCo report into that directory
       - name: Copy coverage report
-        run: cp -r target/site/* coverage-report/
+        run: cp -r target/site/jacoco/. coverage-report/
 
       # Upload coverage report as artifact (IMPORTANT in CI)
       - name: Upload coverage report
