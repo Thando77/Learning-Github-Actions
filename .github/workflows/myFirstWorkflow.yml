@@ -28,10 +28,7 @@ jobs:
           cache: maven
 
       - name: Run Tests + Coverage
-        run: mvn clean test
-
-      - name: Generate Coverage Report
-        run: mvn jacoco:report
+        run: mvn clean verify
 
       - name: Verify report exists
         run: ls -R target/site || echo "No report generated"

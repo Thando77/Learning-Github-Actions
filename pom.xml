@@ -45,6 +45,7 @@
     </dependencies>
 
     <build>
+        <sourceDirectory>src/main</sourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.jacoco</groupId>
@@ -64,7 +65,7 @@
                 <!-- Generate report AFTER tests -->
                 <execution>
                     <id>report</id>
-                    <phase>test</phase>
+                    <phase>verify</phase>
                     <goals>
                         <goal>report</goal>
                     </goals>
