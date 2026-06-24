@@ -58,4 +58,31 @@ jobs:
       - name: Download coverage report artifact
         uses: actions/download-artifact@v4
         with:
-          name: jacoco-coverage-report    
+          name: jacoco-coverage-report
+          path: coverage-report
+  codeql:
+    name: CodeQL Security Scan
+    runs-on: ubuntu-latest
+
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'java' ]  
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "security"
