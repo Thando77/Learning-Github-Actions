@@ -69,7 +69,6 @@ jobs:
       contents: read
       security-events: write
     strategy:
-      fail-fast: false
       matrix:
         language: [ 'java' ]  
 
