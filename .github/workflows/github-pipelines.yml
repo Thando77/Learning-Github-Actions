@@ -7,10 +7,6 @@ on:
       - main
       - 'feature-*'
 
-  pull_request:
-    branches:
-      - main
-
 jobs:
   unit-tests:
     name: Running Unit Tests
