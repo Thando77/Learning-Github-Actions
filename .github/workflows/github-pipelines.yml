@@ -1,4 +1,4 @@
-name: my-first-workflow
+name: github-pipelines
 
 on:
   push:
@@ -6,6 +6,8 @@ on:
       - dev
       - main
       - 'feature-*'
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   unit-tests:
@@ -91,3 +93,37 @@ jobs:
         uses: github/codeql-action/analyze@v3
         with:
           category: "security"
+
+  sonarqube:
+    name: Sonarqube Analysis
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
+    steps:
+      - uses: actions/checkout@v4 # v4.3.1
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Set up JDK 21
+        uses: actions/setup-java@v5 # v4.8.0
+        with:
+          java-version: 21
+          distribution: 'temurin' # Alternative distribution options are available.
+      - name: Cache SonarQube packages
+        uses: actions/cache@v4 # v4.3.0
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Cache Maven packages
+        uses: actions/cache@v4 # v4.3.0
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      - name: Build and analyze
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=Thando77_Learning-Github-Actions -Dsonar.organization=thando77 -Dsonar.host.url=https://sonarcloud.io
+      - name: SonarQube Quality Gate Check
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  
