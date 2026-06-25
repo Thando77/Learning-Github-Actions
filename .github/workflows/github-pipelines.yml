@@ -6,8 +6,9 @@ on:
       - dev
       - main
       - 'feature-*'
-    pull_request:
-      types: [opened, synchronize, reopened] 
+
+  pull_request:
+    types: [opened, synchronize, reopened] 
 
 jobs:
   unit-tests:
@@ -94,7 +95,7 @@ jobs:
         with:
           category: "security"
 
-  sonarqube-build:
+  sonarqube:
     name: Build and analyze
     runs-on: ubuntu-latest
     steps:
