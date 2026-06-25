@@ -12,12 +12,7 @@
         <sonar.organization>thando77</sonar.organization>
         <sonar.projectKey>Thando77_Learning-Github-Actions</sonar.projectKey>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-    </properties>
-
-    <properties>
-        <sonar.coverage.jacoco.xmlReportPaths>
-            target/site/jacoco/jacoco.xml
-        </sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
     <dependencies>
