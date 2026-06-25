@@ -8,6 +8,10 @@
     <artifactId>learning-github-actions</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <sonar.organization>thando77</sonar.organization>
+    </properties>
+
     <dependencies>
 
         <!-- JUnit 5 -->
