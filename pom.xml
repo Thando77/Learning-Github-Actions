@@ -10,6 +10,7 @@
 
     <properties>
         <sonar.organization>thando77</sonar.organization>
+        <sonar.projectKey>thando77_learning-github-actions</sonar.projectKey>
     </properties>
 
     <dependencies>
