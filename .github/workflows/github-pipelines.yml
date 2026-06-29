@@ -206,4 +206,35 @@ jobs:
       - name: Push Image to DockerHub
         run: |
           IMAGE_TAG="${{ needs.Docker.outputs.image-tag }}"
-          docker image push ${{ secrets.DOCKERHUB_USERNAME }}/thandrix_app:${IMAGE_TAG}    
+          docker image push ${{ secrets.DOCKERHUB_USERNAME }}/thandrix_app:${IMAGE_TAG} 
+
+  publish-to-github-container-registry:
+    name: Publish to GitHub Container Registry
+    runs-on: ubuntu-latest
+    needs: Docker
+    steps:
+      - name: Download Docker Image Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: thandrix_app_image
+          path: .
+
+      - name: Load Docker Image
+        run: docker load -i thandrix_app.tar
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Tag Image
+        run: |
+          IMAGE_TAG="${{ needs.Docker.outputs.image-tag }}"
+          docker image tag thandrix_app:${IMAGE_TAG} ghcr.io/${{ github.repository_owner }}/thandrix_app:${IMAGE_TAG}
+
+      - name: Push Image to GitHub Container Registry
+        run: |
+          IMAGE_TAG="${{ needs.Docker.outputs.image-tag }}"
+          docker image push ghcr.io/${{ github.repository_owner }}/thandrix_app:${IMAGE_TAG}             
