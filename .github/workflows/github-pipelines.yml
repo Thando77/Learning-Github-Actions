@@ -123,7 +123,7 @@ jobs:
       - name: Build and analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          run: mvn -B compile sonar:sonar -Dsonar.projectKey=Thando77_Learning-Github-Actions -Dsonar.organization=thando77 -Dsonar.host.url=https://sonarcloud.io -Dsonar.coverage.jacoco.xmlReportPaths=coverage-report/jacoco.xml -Dsonar.working.directory=.scannerwork
+        run: mvn -B compile sonar:sonar -Dsonar.projectKey=Thando77_Learning-Github-Actions -Dsonar.organization=thando77 -Dsonar.host.url=https://sonarcloud.io -Dsonar.coverage.jacoco.xmlReportPaths=coverage-report/jacoco.xml -Dsonar.working.directory=.scannerwork
       
       - name: SonarQube Quality Gate Check
         uses: sonarsource/sonarqube-quality-gate-action@master
@@ -152,6 +152,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: .github/workflows/Dockerfile
+          file: ./Dockerfile
           push: false
           tags: my-first-app:${{ steps.vars.outputs.IMAGE_TAG }}  
