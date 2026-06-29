@@ -10,15 +10,25 @@ import org.slf4j.LoggerFactory;
 public class ApiHealthChecker {
 
     private static final Logger logger = LoggerFactory.getLogger(ApiHealthChecker.class);
-    private static final HttpClient client = HttpClient.newHttpClient();
 
-    public static void main(String[] args) {
-        checkApi("https://jsonplaceholder.typicode.com/posts/1");
-        checkApi("https://jsonplaceholder.typicode.com/users");
-        checkApi("https://jsonplaceholder.typicode.com/comments");
+    private final HttpClient client;
+
+    public ApiHealthChecker() {
+        this.client = HttpClient.newHttpClient();
     }
 
-    private static void checkApi(String url) {
+    public ApiHealthChecker(HttpClient client) {
+        this.client = client;
+    }
+
+    public static void main(String[] args) {
+        ApiHealthChecker checker = new ApiHealthChecker();
+        checker.checkApi("https://jsonplaceholder.typicode.com/posts/1");
+        checker.checkApi("https://jsonplaceholder.typicode.com/users");
+        checker.checkApi("https://jsonplaceholder.typicode.com/comments");
+    }
+
+    public void checkApi(String url) {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .GET()
