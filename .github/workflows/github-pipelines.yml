@@ -3,9 +3,8 @@ name: github-pipelines
 on:
   push:
     branches:
-      - dev
       - main
-      - 'feature-*'
+      
   pull_request:
     types: [opened, synchronize, reopened]
 
