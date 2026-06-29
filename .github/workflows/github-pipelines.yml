@@ -127,9 +127,7 @@ jobs:
       - name: SonarQube Quality Gate Check
         uses: sonarsource/sonarqube-quality-gate-action@master
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          with:
-            scanMetadataReportFile: .scannerwork/report-task.txt
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  
 
   Docker:
     name: Docker Build and Push
