@@ -167,7 +167,7 @@ jobs:
           file: ./Dockerfile
           push: false
           tags: thandrix_app:${{ steps.vars.outputs.IMAGE_TAG }}
-          loading: true
+          load: true
 
       - name: Save Image
         run: docker save thandrix_app:${{ steps.vars.outputs.IMAGE_TAG }} -o thandrix_app.tar
