@@ -175,7 +175,7 @@ jobs:
       - name: Upload Docker Image Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: docker-image
+          name: thandrix_app_image
           path: thandrix_app.tar  
 
   publish-to-dockerhub:
