@@ -232,9 +232,11 @@ jobs:
       - name: Tag Image
         run: |
           IMAGE_TAG="${{ needs.Docker.outputs.image-tag }}"
-          docker image tag thandrix_app:${IMAGE_TAG} ghcr.io/thandrix_app:${IMAGE_TAG}
+          OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          docker image tag thandrix_app:${IMAGE_TAG} ghcr.io/${OWNER}/thandrix_app:${IMAGE_TAG}
 
       - name: Push Image to GitHub Container Registry
         run: |
           IMAGE_TAG="${{ needs.Docker.outputs.image-tag }}"
-          docker image push ghcr.io/thandrix_app:${IMAGE_TAG}             
+          OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          docker image push ghcr.io/${OWNER}/thandrix_app:${IMAGE_TAG}             
