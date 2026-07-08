@@ -10,6 +10,12 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
+permissions:
+  actions: read
+  security-events: write  
+  packages: write
+  contents: read 
+
 jobs:
   ci-pipeline:
     uses: Thando77/reusable-workflows/.github/workflows/ci-pipelines.yml@main
