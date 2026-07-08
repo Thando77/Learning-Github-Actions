@@ -12,7 +12,7 @@ on:
 
 jobs:
   ci-pipeline:
-    uses: Thando77/reusable-workflows/blob/main/.github/workflows/ci-pipelines.yml
+    uses: Thando77/reusable-workflows/.github/workflows/ci-pipelines.yml@main
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
