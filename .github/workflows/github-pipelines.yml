@@ -1,4 +1,5 @@
 name: github-pipelines
+#It is just a comment
 
 on:
   push:
@@ -19,7 +20,6 @@ permissions:
 jobs:
   ci-pipeline:
     uses: Thando77/reusable-workflows/.github/workflows/ci-pipelines.yml@main
-    
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
