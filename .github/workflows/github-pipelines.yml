@@ -14,7 +14,6 @@ jobs:
   ci-pipeline:
     uses: Thando77/reusable-workflows/.github/workflows/ci-pipelines.yml@main
     secrets:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
